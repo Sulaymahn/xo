@@ -84,5 +84,12 @@ button.primary-button:hover{
 @media screen and (width < 768px){
     .game-wrapper{
         display: block;
+        padding: 0;
+    }
+
+    .tic-container {
+        margin: auto;
+        height: 300px;
+        width: 300px;
     }
 }
