@@ -107,15 +107,16 @@ function evaluate() {
         else if (agg == 3) {
             winner = o.name + " won!";
             gameFinished = true;
-        }
-        else if (!board.flat().includes(-5)) {
-            winner = "Game ended as draw";
-            gameFinished = true;
-        }
+        }
 
         if (gameFinished) {
             message.innerText = winner;
 return;
         }
     }
+
+if (!board.flat().includes(-5)) {
+            winner = "Game ended as draw";
+            gameFinished = true;
+        }
 }
