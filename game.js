@@ -115,6 +115,7 @@ function evaluate() {
 
         if (gameFinished) {
             message.innerText = winner;
+return;
         }
     }
 }
