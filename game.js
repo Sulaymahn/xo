@@ -1,6 +1,7 @@
 var x = {
     name: "Player 1 (X)",
     color: "#ffffff",
+    val: 0,
     isAI: false,
     shape: () => {
         const shape = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -17,6 +18,7 @@ var x = {
 var o = {
     name: "Player 2 (O)",
     color: "#168BF2",
+    val: 1,
     isAI: false,
     shape: () => {
         const shape = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -84,15 +86,18 @@ function reset() {
     message.innerText = "";
 }
 
+function printBoard() {
+    console.log(board);
+}
+
 function play(coord) {
     if (!gameFinished && board[coord.x][coord.y] == emptySlot) {
-        board[coord.x][coord.y] = xTurn ? 0 : 1;
+        board[coord.x][coord.y] = xTurn ? x.val : o.val;
         const elm = xTurn ? x.shape() : o.shape();
         findSlot(coord).appendChild(elm);
         xTurn = !xTurn;
 
         evaluate();
-
     }
 }
 
@@ -100,23 +105,25 @@ function evaluate() {
     for (let i = 0; i < winConditions.length; i++) {
         const condition = winConditions[i];
         const agg = board[condition[0].x][condition[0].y] + board[condition[1].x][condition[1].y] + board[condition[2].x][condition[2].y];
-        if (agg == 0) {
+        
+        if (agg == x.val * 3) {
             winner = x.name + " won!";
             gameFinished = true;
         }
-        else if (agg == 3) {
+        else if (agg == o.val * 3) {
             winner = o.name + " won!";
             gameFinished = true;
-        }
+        }
 
-        if (gameFinished) {
+        if(gameFinished){
             message.innerText = winner;
-return;
+            return;
         }
     }
 
-if (!board.flat().includes(-5)) {
-            winner = "Game ended as draw";
-            gameFinished = true;
-        }
+    if (!board.flatMap(s => s).includes(emptySlot)) {
+        winner = "Game ended as draw";
+        gameFinished = true;
+        message.innerText = winner;
+    }
 }
