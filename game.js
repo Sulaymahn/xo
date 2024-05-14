@@ -86,10 +86,6 @@ function reset() {
     message.innerText = "";
 }
 
-function printBoard() {
-    console.log(board);
-}
-
 function play(coord) {
     if (!gameFinished && board[coord.x][coord.y] == emptySlot) {
         board[coord.x][coord.y] = xTurn ? x.val : o.val;
