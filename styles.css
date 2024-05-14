@@ -5,14 +5,14 @@ body {
     color: white;
 }
 
-.tic-container {
+#tic-container {
     background-color: #1B1E22;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     align-self: center;
-    height: 500px;
-    width: 500px;
+    min-width: 400px;
+    min-height: 400px;
     padding: 16px;
     gap: 16px;
     box-sizing: border-box;
@@ -144,10 +144,10 @@ button.primary-button:hover {
         padding: 0;
     }
 
-    .tic-container {
+    #tic-container {
         margin: auto;
-        height: 70vw;
-        width: 70vw;
+        height: calc(100vw - 48px);
+        width: calc(100vw - 48px);
     }
 
     #game-detail-wrapper>div {
