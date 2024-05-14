@@ -25,13 +25,26 @@
                 <div x="2" y="1" class="tic-slot"></div>
                 <div x="2" y="2" class="tic-slot"></div>
             </div>
-            <div class="game-detail-wrapper">
-                <div>
+            <div id="game-detail-wrapper">
+                <div style="margin: 0;">
                     <h1>HUGS AND KISSES*</h1>
                     <p>A simple Tic Tac Toe game make with HTML, CSS and JavaScript</p>
                 </div>
                 <div id="game-detail">
-                    <h3 id="game-message"></h3>
+                    <div id="left-view">
+                        <h4>Player Turn</h4>
+                        <div id="turn-indicator">
+                            <div id="left-turn-indicator" class="indicator-slot">
+                            </div>
+                            <span style="width: 10px;"></span>
+                            <div id="right-turn-indicator" class="indicator-slot">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="horizontal-divider"></div> -->
+                    <div id="right-view">
+                        <h3 id="game-message"></h3>
+                    </div>
                 </div>
                 <div>
                     <button class="primary-button" onclick="reset()">Restart</button>

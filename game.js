@@ -37,6 +37,8 @@ var xTurn = true;
 var gameFinished = false;
 const message = document.getElementById("game-message");
 const slots = document.getElementsByClassName("tic-slot");
+const left_indicator = document.getElementById("left-turn-indicator");
+const right_indicator = document.getElementById("right-turn-indicator");
 const slot_count = slots.length;
 const emptySlot = -5;
 const board = [
@@ -70,6 +72,30 @@ function setup() {
             play({ x: slots[i].getAttribute('x'), y: slots[i].getAttribute('y') });
         });
     }
+
+    let xshape = x.shape();
+    xshape.setAttribute("height", "40px");
+    xshape.setAttribute("width", "40px");
+
+    let oshape = o.shape();
+    oshape.setAttribute("height", "40px");
+    oshape.setAttribute("width", "40px");
+
+    left_indicator.appendChild(xshape);
+    right_indicator.appendChild(oshape);
+
+    updateIndicator();
+}
+
+function updateIndicator() {
+    if (xTurn) {
+        right_indicator.setAttribute("class", "indicator-slot");
+        left_indicator.setAttribute("class", "indicator-slot indicator-slot-active");
+    }
+    else {
+        left_indicator.setAttribute("class", "indicator-slot");
+        right_indicator.setAttribute("class", "indicator-slot indicator-slot-active");
+    }
 }
 
 function reset() {
@@ -92,6 +118,7 @@ function play(coord) {
         const elm = xTurn ? x.shape() : o.shape();
         findSlot(coord).appendChild(elm);
         xTurn = !xTurn;
+        updateIndicator();
 
         evaluate();
     }
@@ -101,7 +128,7 @@ function evaluate() {
     for (let i = 0; i < winConditions.length; i++) {
         const condition = winConditions[i];
         const agg = board[condition[0].x][condition[0].y] + board[condition[1].x][condition[1].y] + board[condition[2].x][condition[2].y];
-        
+
         if (agg == x.val * 3) {
             winner = x.name + " won!";
             gameFinished = true;
@@ -111,7 +138,7 @@ function evaluate() {
             gameFinished = true;
         }
 
-        if(gameFinished){
+        if (gameFinished) {
             message.innerText = winner;
             return;
         }

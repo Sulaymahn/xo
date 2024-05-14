@@ -32,7 +32,54 @@ body {
     padding: 0 100px;
 }
 
-.game-detail-wrapper {
+.indicator-slot {
+    width: 80px;
+    height: 80px;
+    background-color: #363941;
+    border: 1px solid #747474;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.indicator-slot>svg {
+    fill: #747474;
+}
+
+.indicator-slot-active {
+    border-color: #a8a8a8;
+}
+
+.indicator-slot-active>svg {
+    fill: white;
+}
+
+#turn-indicator {
+    display: flex;
+}
+
+#game-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+#game-detail-wrapper>div {
+    margin-top: 32px;
+}
+
+#left-view {}
+
+#right-view {}
+
+.horizontal-divider {
+    height: 100%;
+    width: 2px;
+    background-color: grey;
+}
+
+#game-detail-wrapper {
     display: flex;
     flex-direction: column;
     margin: 16px 32px;
